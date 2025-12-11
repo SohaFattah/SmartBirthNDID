@@ -1,205 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Smart Birth NDID</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <title>SmartBirth NDID – Newborn Digital Identity Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg2: #0b1120;
+      --card: #020617;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.1);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border: #1f2937;
+      --chip: #111827;
+      --chip-border: #374151;
+      --green: #22c55e;
+      --blue: #3b82f6;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #114B38 0%, #0D3A2D 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-        .login-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 450px;
-            width: 100%;
-            overflow: hidden;
-        }
+    body {
+      background: radial-gradient(circle at top, #0f172a 0, #020617 50%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
 
-        .login-header {
-            background: linear-gradient(135deg, #114B38 0%, #00A651 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
 
-        .login-header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+    /* HEADER */
 
-        .login-header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 16px 12px 8px;
+    }
 
-        .login-form {
-            padding: 40px 30px;
-        }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--chip-border);
+      background: var(--chip);
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+    .tag span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #114B38;
-            font-weight: 600;
-            font-size: 14px;
-        }
+    header h1 {
+      font-size: clamp(1.8rem, 3vw, 2.3rem);
+      margin-bottom: 6px;
+    }
 
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    header h1 span {
+      color: var(--accent);
+    }
 
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #00A651;
-        }
+    header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
 
-        .form-group select {
-            cursor: pointer;
-        }
+    /* LAYOUT */
 
-        .login-button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #114B38 0%, #00A651 100%);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+      align-items: start;
+    }
 
-        .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(17, 75, 56, 0.3);
-        }
+    .card {
+      background: radial-gradient(circle at top left, #111827 0, #020617 55%);
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.65);
+    }
 
-        .login-button:active {
-            transform: translateY(0);
-        }
+    .card h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .info-box {
-            background: #E8F5F1;
-            border-left: 4px solid #00A651;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            font-size: 12px;
-            color: #333;
-            line-height: 1.6;
-        }
+    .card h2 span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-        .info-box strong {
-            color: #114B38;
-        }
+    .card h3 {
+      font-size: 0.9rem;
+      margin: 10px 0 4px;
+    }
 
-        .back-link {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
 
-        .back-link a {
-            color: #00A651;
-            text-decoration: none;
-            font-size: 14px;
-            transition: opacity 0.3s;
-        }
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
 
-        .back-link a:hover {
-            opacity: 0.8;
-        }
-    </style>
+    .card ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 4px;
+    }
+
+    .card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    /* FLOW CHIPS */
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .flow span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.74rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--chip-border);
+      background: var(--chip);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .flow span::after {
+      content: "→";
+      font-size: 0.65rem;
+      color: #6b7280;
+    }
+
+    .flow span:last-child::after {
+      content: "";
+    }
+
+    /* BADGES */
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--chip-border);
+      background: var(--chip);
+      color: var(--text-muted);
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tl-step {
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 10px;
+      border: 1px dashed var(--border);
+      padding: 8px;
+    }
+
+    .tl-step span.phase {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .tl-step h4 {
+      font-size: 0.8rem;
+      margin: 2px 0 2px;
+    }
+
+    .tl-step p {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    footer strong {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 880px) {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .timeline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .timeline {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        padding-top: 12px;
+      }
+      .page {
+        padding-inline: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-header">
-            <h1>Smart Birth NDID</h1>
-            <p>Newborn Digital Identity System</p>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="tag">
+        <span></span>
+        SmartBirth NDID • Hackathon Prototype (HTML)
+      </div>
+      <h1>
+        <span>SmartBirth NDID</span> – Newborn Digital Identity System
+      </h1>
+      <p>
+        A national concept that creates a secure digital identity for every newborn at the moment of
+        birth using biometric fingerprint capture, smart hospital wristbands, and direct integration
+        with the Absher platform.
+      </p>
+    </header>
+
+    <!-- PROBLEM & SOLUTION -->
+    <section class="grid-2">
+      <div class="card">
+        <h2><span class="dot"></span> Problem</h2>
+        <p>
+          Newborn registration in many hospitals is still manual and paper-based. This leads to
+          delays, duplicated effort, and potential human errors that may impact both families and
+          hospital staff.
+        </p>
+        <ul>
+          <li>Multiple manual steps to issue a birth certificate and update the family registry.</li>
+          <li>Risk of misidentification or newborn switching inside crowded nurseries.</li>
+          <li>Delayed access to e-government services that depend on the child’s digital identity.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span> Solution – SmartBirth NDID</h2>
+        <p>
+          SmartBirth NDID introduces a secure, automated workflow that links the newborn’s biometric
+          identity to national platforms from the first minutes of life.
+        </p>
+        <ul>
+          <li>Capture infant-safe fingerprint data directly after birth.</li>
+          <li>Create a unique digital ID and link it to the family registry in Absher.</li>
+          <li>Print and assign a smart wristband connected to the newborn’s digital identity.</li>
+          <li>Record birth events and movements in the medical record using AI-enabled cameras.</li>
+        </ul>
+        <div class="badges">
+          <span class="badge">Digital Identity</span>
+          <span class="badge">GovTech</span>
+          <span class="badge">Patient Safety</span>
+          <span class="badge">Automation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOW & TESTING -->
+    <section class="grid-2">
+      <div class="card">
+        <h2><span class="dot"></span> End-to-End Workflow</h2>
+        <p style="margin-bottom:4px;">
+          The prototype simulates the full journey of the newborn inside the hospital and across
+          connected systems:
+        </p>
+        <div class="flow">
+          <span>Birth event recorded</span>
+          <span>Fingerprint captured</span>
+          <span>Digital ID generated</span>
+          <span>Data sent to Absher</span>
+          <span>Smart wristband printed</span>
+          <span>Medical record updated</span>
         </div>
 
-        <div class="login-form">
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="username">Employee ID / Username</label>
-                    <input type="text" id="username" placeholder="Enter your employee ID" required>
-                </div>
+        <h3>Testing / Validation</h3>
+        <p>
+          We validated the concept by walking through this complete sequence and checking that each
+          step can be mapped to existing hospital and government systems. The focus is on data
+          consistency, secure integration, and preventing any mismatch between the physical newborn
+          and the digital identity.
+        </p>
+      </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required>
-                </div>
+      <div class="card">
+        <h2><span class="dot"></span> Key Technologies</h2>
+        <ul>
+          <li>Infant-safe biometric fingerprint scanner integrated with hospital systems.</li>
+          <li>Secure API layer for communication with the Absher platform.</li>
+          <li>Smart newborn wristbands with QR / ID encoding for real-time verification.</li>
+          <li>AI-assisted cameras to track newborn movements and link events to the record.</li>
+          <li>Integration with EMR / EHR systems for automatic documentation of birth events.</li>
+        </ul>
+      </div>
+    </section>
 
-                <div class="form-group">
-                    <label for="hospital">Hospital</label>
-                    <select id="hospital" required>
-                        <option value="">Select a Hospital</option>
-                        <option value="KSA_CENTRAL">Saudi Central Hospital</option>
-                        <option value="KSA_NORTH">Saudi Northern Hospital</option>
-                        <option value="KSA_SOUTH">Saudi Southern Hospital</option>
-                        <option value="KSA_EAST">Saudi Eastern Hospital</option>
-                        <option value="KSA_WEST">Saudi Western Hospital</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="login-button">Login</button>
-
-                <div class="info-box">
-                    <strong>Demo Credentials:</strong><br>
-                    Username: EMP001<br>
-                    Password: Any value<br>
-                    Hospital: Select any option
-                </div>
-            </form>
-
-            <div class="back-link">
-                <a href="landing.html">← Back to Home</a>
-            </div>
+    <!-- TIMELINE -->
+    <section class="card">
+      <h2><span class="dot"></span> Project Timeline</h2>
+      <div class="timeline">
+        <div class="tl-step">
+          <span class="phase">Phase 1</span>
+          <h4>Research & Concept</h4>
+          <p>Study current newborn registration and define the SmartBirth NDID vision.</p>
         </div>
-    </div>
+        <div class="tl-step">
+          <span class="phase">Phase 2</span>
+          <h4>Prototype Design</h4>
+          <p>Model the end-to-end workflow and data integration points with Absher.</p>
+        </div>
+        <div class="tl-step">
+          <span class="phase">Phase 3</span>
+          <h4>Simulation & Validation</h4>
+          <p>Simulate fingerprint capture, digital ID creation, and smart wristband flow.</p>
+        </div>
+        <div class="tl-step">
+          <span class="phase">Phase 4</span>
+          <h4>Pilot & Scaling</h4>
+          <p>Prepare a hospital pilot and roadmap toward national deployment.</p>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        function handleLogin(event) {
-            event.preventDefault();
+    <!-- FUTURE WORK -->
+    <section class="card" style="margin-top: 14px;">
+      <h2><span class="dot"></span> Future Work</h2>
+      <ul>
+        <li>Connect the prototype with real biometric devices and a test hospital environment.</li>
+        <li>Implement an AI-based tracking engine for continuous newborn monitoring.</li>
+        <li>Create an API sandbox to safely test integration with national platforms.</li>
+        <li>Run a pilot project to measure impact on speed, safety, and registration accuracy.</li>
+      </ul>
+    </section>
 
-            const username = document.getElementById('username').value;
-            const hospital = document.getElementById('hospital').value;
-
-            // Save user data
-            localStorage.setItem('currentUser', username);
-            localStorage.setItem('currentHospital', hospital);
-
-            // Redirect to next page
-            window.location.href = 'parent-data.html';
-        }
-    </script>
+    <footer>
+      <p>
+        Prototype for hackathon submission – <strong>SmartBirth NDID: Newborn Digital Identity System</strong><br />
+        Hosted via GitHub Pages at <strong>sohafattah.github.io/SmartBirthNDID</strong>
+      </p>
+    </footer>
+  </div>
 </body>
 </html>
