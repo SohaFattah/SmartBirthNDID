@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ربط السوار الذكي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #114B38 0%, #00A651 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            display: flex;
+        }
+
+        .progress-fill {
+            background: #00A651;
+            height: 100%;
+            width: 60%;
+            transition: width 0.3s;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .wristband-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #114B38;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .wristband-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .wristband-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            background: #F0F8F5;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .wristband-item.linked {
+            background: #E8F5F1;
+            border-color: #00A651;
+        }
+
+        .wristband-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .wristband-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: #114B38;
+            margin-bottom: 10px;
+        }
+
+        .wristband-id {
+            font-size: 12px;
+            color: #666;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.linked {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .link-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #114B38 0%, #00A651 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .link-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(17, 75, 56, 0.3);
+        }
+
+        .link-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .instructions {
+            background: #E8F5F1;
+            border-left: 4px solid #00A651;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .instructions h3 {
+            color: #114B38;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-right: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #114B38 0%, #00A651 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(17, 75, 56, 0.3);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-back {
+            background: #e0e0e0;
+            color: #333;
+            flex: 0.5;
+        }
+
+        .btn-back:hover {
+            background: #d0d0d0;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ربط السوار الذكي</h1>
+            <p>الخطوة 3 من 5 - ربط الأساور الذكية للمولود والأم</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <div class="content">
+            <div class="instructions">
+                <h3>تعليمات ربط الأساور الذكية:</h3>
+                <ol>
+                    <li>ضع السوار الذكي على معصم المولود بلطف</li>
+                    <li>ضع السوار الذكي الثاني على معصم الأم</li>
+                    <li>اضغط على زر "ربط السوار" لكل سوار لتفعيله</li>
+                    <li>سيتم مزامنة الأساور تلقائيًا مع النظام</li>
+                </ol>
+            </div>
+
+            <div class="wristband-section">
+                <div class="section-title">الأساور الذكية</div>
+
+                <div class="wristband-grid">
+                    <!-- سوار المولود -->
+                    <div class="wristband-item" id="babyWristband">
+                        <div class="wristband-icon">👶</div>
+                        <div class="wristband-label">سوار المولود</div>
+                        <div class="wristband-id" id="babyWristbandID">WB-BABY-0000</div>
+                        <div class="status-badge pending" id="babyStatus">قيد الانتظار</div>
+                        <button class="link-button" onclick="linkBabyWristband()">ربط السوار</button>
+                    </div>
+
+                    <!-- سوار الأم -->
+                    <div class="wristband-item" id="motherWristband">
+                        <div class="wristband-icon">👩</div>
+                        <div class="wristband-label">سوار الأم</div>
+                        <div class="wristband-id" id="motherWristbandID">WB-MOM-0000</div>
+                        <div class="status-badge pending" id="motherStatus">قيد الانتظار</div>
+                        <button class="link-button" onclick="linkMotherWristband()">ربط السوار</button>
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ تم ربط جميع الأساور الذكية بنجاح!
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-back" onclick="goBack()">رجوع</button>
+                <button type="button" class="btn-next" id="nextBtn" onclick="proceedToConfirmation()" disabled>التالي: تأكيد البيانات</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let babyLinked = false;
+        let motherLinked = false;
+
+        function linkBabyWristband() {
+            const babyWristband = document.getElementById('babyWristband');
+            const babyStatus = document.getElementById('babyStatus');
+            const babyButton = event.target;
+
+            babyButton.disabled = true;
+            babyButton.textContent = 'جاري الربط...';
+
+            setTimeout(() => {
+                babyLinked = true;
+                babyWristband.classList.add('linked');
+                babyStatus.textContent = '✓ مرتبط';
+                babyStatus.className = 'status-badge linked';
+                babyButton.textContent = '✓ مرتبط';
+                babyButton.disabled = true;
+
+                // حفظ البيانات
+                const wristbandData = {
+                    baby: {
+                        id: 'WB-BABY-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+                        linkedAt: new Date().toISOString()
+                    }
+                };
+                
+                if (motherLinked) {
+                    wristbandData.mother = JSON.parse(localStorage.getItem('motherWristbandData') || '{}');
+                }
+                
+                localStorage.setItem('babyWristbandData', JSON.stringify(wristbandData.baby));
+                
+                checkBothLinked();
+            }, 1500);
+        }
+
+        function linkMotherWristband() {
+            const motherWristband = document.getElementById('motherWristband');
+            const motherStatus = document.getElementById('motherStatus');
+            const motherButton = event.target;
+
+            motherButton.disabled = true;
+            motherButton.textContent = 'جاري الربط...';
+
+            setTimeout(() => {
+                motherLinked = true;
+                motherWristband.classList.add('linked');
+                motherStatus.textContent = '✓ مرتبط';
+                motherStatus.className = 'status-badge linked';
+                motherButton.textContent = '✓ مرتبط';
+                motherButton.disabled = true;
+
+                // حفظ البيانات
+                const wristbandData = {
+                    mother: {
+                        id: 'WB-MOM-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+                        linkedAt: new Date().toISOString()
+                    }
+                };
+                
+                localStorage.setItem('motherWristbandData', JSON.stringify(wristbandData.mother));
+                
+                checkBothLinked();
+            }, 1500);
+        }
+
+        function checkBothLinked() {
+            if (babyLinked && motherLinked) {
+                document.getElementById('successMessage').classList.add('show');
+                document.getElementById('nextBtn').disabled = false;
+            }
+        }
+
+        function proceedToConfirmation() {
+            window.location.href = 'confirmation.html';
+        }
+
+        function goBack() {
+            window.location.href = 'fingerprint-capture.html';
+        }
+    </script>
+</body>
+</html>

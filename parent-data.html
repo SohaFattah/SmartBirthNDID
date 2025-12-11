@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Data Entry - Smart Birth NDID</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #114B38 0%, #00A651 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            display: flex;
+        }
+
+        .progress-fill {
+            background: #00A651;
+            height: 100%;
+            width: 20%;
+            transition: width 0.3s;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #114B38;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00A651;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #114B38 0%, #00A651 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(17, 75, 56, 0.3);
+        }
+
+        .btn-back {
+            background: #e0e0e0;
+            color: #333;
+            flex: 0.5;
+        }
+
+        .btn-back:hover {
+            background: #d0d0d0;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #d32f2f;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-back {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Parent Data Entry</h1>
+            <p>Step 1 of 5 - Enter parent and newborn information</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <div class="content">
+            <form onsubmit="submitParentData(event)">
+                <!-- Mother Information -->
+                <div class="form-section">
+                    <div class="section-title">Mother Information</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="motherName">Full Name</label>
+                            <input type="text" id="motherName" placeholder="Enter mother's full name" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="motherId">National ID</label>
+                            <input type="text" id="motherId" placeholder="Enter national ID" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="motherPhone">Phone Number</label>
+                            <input type="tel" id="motherPhone" placeholder="Enter phone number" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="motherEmail">Email</label>
+                            <input type="email" id="motherEmail" placeholder="Enter email address" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Father Information -->
+                <div class="form-section">
+                    <div class="section-title">Father Information</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fatherName">Full Name</label>
+                            <input type="text" id="fatherName" placeholder="Enter father's full name" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherId">National ID</label>
+                            <input type="text" id="fatherId" placeholder="Enter national ID" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherPhone">Phone Number</label>
+                            <input type="tel" id="fatherPhone" placeholder="Enter phone number" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherEmail">Email</label>
+                            <input type="email" id="fatherEmail" placeholder="Enter email address" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newborn Information -->
+                <div class="form-section">
+                    <div class="section-title">Newborn Information</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="babyName">Full Name</label>
+                            <input type="text" id="babyName" placeholder="Enter newborn's full name" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="babyGender">Gender</label>
+                            <select id="babyGender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthTime">Birth Time</label>
+                            <input type="time" id="birthTime" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthWeight">Birth Weight (kg)</label>
+                            <input type="number" id="birthWeight" placeholder="Enter birth weight" step="0.1" required>
+                            <span class="error-message">This field is required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-back" onclick="goBack()">Back</button>
+                    <button type="submit" class="btn-next">Next: Fingerprint Capture</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitParentData(event) {
+            event.preventDefault();
+
+            const parentData = {
+                mother: {
+                    name: document.getElementById('motherName').value,
+                    id: document.getElementById('motherId').value,
+                    phone: document.getElementById('motherPhone').value,
+                    email: document.getElementById('motherEmail').value
+                },
+                father: {
+                    name: document.getElementById('fatherName').value,
+                    id: document.getElementById('fatherId').value,
+                    phone: document.getElementById('fatherPhone').value,
+                    email: document.getElementById('fatherEmail').value
+                },
+                baby: {
+                    name: document.getElementById('babyName').value,
+                    gender: document.getElementById('babyGender').value,
+                    birthTime: document.getElementById('birthTime').value,
+                    weight: document.getElementById('birthWeight').value
+                }
+            };
+
+            localStorage.setItem('parentData', JSON.stringify(parentData));
+            window.location.href = 'fingerprint-capture.html';
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
