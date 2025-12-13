@@ -4,49 +4,48 @@
 ### An integrated system for automating newborn registration with biometric security and intelligent tracking
 
 ---
-
-## 📋 Project Overview
+## Project Overview
 
 **Smart Birth Newborn Digital Identity System** is an innovative national system designed to **fully automate the newborn registration process** from the moment of birth. This is achieved by **capturing the newborn's biometric fingerprint** using a specialized in-hospital device and securely **linking it directly to the Absher platform** and relevant government agencies.
 
 ### Main Objective:
-- ✅ **Reduce registration time** from days to minutes
-- ✅ **Create a secure biometric identity** that cannot be forged
-- ✅ **Prevent newborn switching incidents** through advanced tracking
-- ✅ **Support Saudi Vision 2030** in government digital transformation
+- **Reduce registration time** from days to minutes
+- **Create a secure biometric identity** that cannot be forged
+- **Prevent newborn switching incidents** through advanced tracking
+- **Support Saudi Vision 2030** in government digital transformation
 
 ---
 
-## 🎯 Key Features
+##  Key Features
 
-### 1. **Biometric Security** 🔐
+### 1. **Biometric Security** 
 - Unforgeable digital identity linked to the newborn's fingerprint
 - Advanced encryption (AES-256) for all biometric data
 - National ID verification with Absher platform
 
-### 2. **Instant Automation** ⚡
+### 2. **Instant Automation** 
 - Automatic birth certificate issuance
 - Automatic addition to family registry
 - Instant notifications to parents
 
-### 3. **Smart Tracking** 📍
+### 3. **Smart Tracking** 
 - Real-time tracking system for newborn and mother
 - Smart wristbands (RFID/BLE) that cannot be removed
 - Advanced surveillance cameras in delivery units
 
-### 4. **Prevent Switching** 🛡️
+### 4. **Prevent Switching** 
 - Direct biometric link between newborn and registry
 - Instant alerts on wristband removal attempts
 - Complete event timeline for all activities
 
-### 5. **Absher Integration** 🔗
+### 5. **Absher Integration** 
 - Secure connection with Absher platform
 - Safe data exchange with government agencies
 - Compliance with National Cybersecurity Authority standards
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -72,7 +71,7 @@
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 SmartBirthNDID/
@@ -91,7 +90,7 @@ SmartBirthNDID/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. **Open the Landing Page:**
 ```bash
@@ -117,7 +116,7 @@ open landing.html
 
 ---
 
-## 📊 Data Flow
+##  Data Flow
 
 ```
 Login
@@ -137,29 +136,28 @@ Security Dashboard & Tracking
 
 ---
 
-## 🔐 Security & Privacy
+## Security & Privacy
 
 ### Security Requirements:
-- ✅ Data encryption in transit (TLS 1.2+)
-- ✅ Data encryption at rest (AES-256)
-- ✅ Multi-factor authentication (MFA)
-- ✅ Role-based access control (RBAC)
-- ✅ Complete audit logging
+-  Data encryption in transit (TLS 1.2+)
+- Data encryption at rest (AES-256)
+- Multi-factor authentication (MFA)
+- Role-based access control (RBAC)
+- Complete audit logging
 
 ### Compliance:
-- ✅ National Cybersecurity Authority (NCA) standards
-- ✅ National Information Center (NIC) standards
-- ✅ Absher platform requirements
-- ✅ Personal data protection laws
+-  National Cybersecurity Authority (NCA) standards
+- National Information Center (NIC) standards
+- Absher platform requirements
+- Personal data protection laws
 
 ---
 
-## 🛠️ Technical Components
+## Technical Components
 
 ### Hardware:
 - **Fingerprint Devices:** High-precision specialized devices for newborns
 - **Smart Wristbands:** RFID/NFC or Bluetooth Low Energy (BLE)
-- **Tracking Cameras:** High-resolution IP cameras
 - **Hospital Servers:** Hospital Information Systems (HIS)
 
 ### Software:
@@ -177,7 +175,7 @@ Security Dashboard & Tracking
 
 ---
 
-## 📱 User Interfaces
+## User Interfaces
 
 ### 1. **Hospital Interface:**
 - Parent and newborn data entry
@@ -196,7 +194,7 @@ Security Dashboard & Tracking
 
 ---
 
-## 📈 Expected Benefits
+##  Expected Benefits
 
 | Benefit | Impact |
 | :--- | :--- |
@@ -208,12 +206,12 @@ Security Dashboard & Tracking
 
 ---
 
-## 🔄 Future Development
+##  Future Development
 
 ### Phase 1 (Current):
-- ✅ Interactive prototype
-- ✅ Technical requirements documentation
-- ✅ Architecture design
+- Interactive prototype
+-  Technical requirements documentation
+- Architecture design
 
 ### Phase 2:
 - [ ] Backend server development
@@ -232,29 +230,29 @@ Security Dashboard & Tracking
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 - **[DATA_FLOW.md](DATA_FLOW.md)** - Detailed data flow documentation
 - **[Technical Requirements](../newborn_digital_id_technical_requirements.md)** - Complete technical requirements
 
 ---
 
-## 👥 Team
+##  Team
 
 This project was developed by a specialized team in:
 - Software development
 - Cybersecurity
 - Government digital services
 - UI/UX design
-
+-AI Engineer
 ---
 
-## 📞 Contact & Support
+##  Contact & Support
 
 For questions and inquiries:
-- **Email:** support@smartbirth-ndid.com
-- **Phone:** +966-920001234
-- **Website:** https://smartbirth-ndid.github.io
+- **Email:** soha_4861@hotmail.com
+- **Phone:** +966-550313639
+- **Website:**https://bit.ly/ndidabsher
 
 ---
 
