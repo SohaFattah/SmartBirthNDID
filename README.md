@@ -146,6 +146,7 @@ Security Dashboard & Tracking
 - Complete audit logging
 
 ### Compliance:
+- National Institute of Standards and Technology (NIST)
 -  National Cybersecurity Authority (NCA) standards
 - National Information Center (NIC) standards
 - Absher platform requirements
@@ -256,7 +257,7 @@ For questions and inquiries:
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License** - you can use and modify it freely.
 
