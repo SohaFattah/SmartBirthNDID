@@ -262,7 +262,7 @@ This project is licensed under the **MIT License** - you can use and modify it f
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Special thanks to:
 - **Absher Hackathon** for the opportunity to participate
@@ -271,11 +271,16 @@ Special thanks to:
 
 ---
 
-## 📝 Important Notes
+## Important Notes
 
 - **This is a prototype:** All data is stored in `localStorage` and not sent to actual servers.
 - **Simulated operations:** All processes (fingerprint, wristbands, submission) are simulated for demonstration.
 - **Future development:** Simulations can be replaced with real integrations with devices and government systems.
+- **Live demo availability: The prototype is accessible via an external link for evaluation and review.
+
+
+  Demo link: https://bit.ly/ndidabsher
+• Future development: All simulated components can be replaced with real integrations with certified biometric devices and government systems.
 
 ---
 
